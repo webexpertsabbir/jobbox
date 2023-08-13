@@ -1,11 +1,14 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import Loading from "../components/reusable/Loading";
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ children }) => {
   const { pathname } = useLocation();
-  const isLoading = false;
-  const email = "test@gmail.com";
+  // const isLoading = false;
+  // const email = "test@gmail.com";
+  const { isLoading, user: { email } } = useSelector(state => state.auth);
+  // console.log(email)
 
   if (isLoading) {
     return <Loading />;
